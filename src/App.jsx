@@ -302,21 +302,25 @@ function App() {
                         {tease}
                       </p>
                     )}
-                    <p className="text-xs tracking-wide text-stone-400">
-                      선택한 단어
-                    </p>
-                    <p className="mt-1 font-serif text-3xl text-stone-50">
-                      {selectedWord.hanzi}
-                    </p>
-                    <p className="mt-1 text-lg text-amber-200">
-                      {selectedWord.pinyin}
-                    </p>
-                    <p className="mt-1 font-medium text-stone-100">
-                      {selectedWord.meaning}
-                    </p>
-                    <p className="mt-2 text-sm leading-relaxed text-stone-400">
-                      {selectedWord.explanation}
-                    </p>
+                    <div className="flex flex-col gap-1">
+                      <p className="text-xs tracking-wide text-stone-400">
+                        선택한 단어
+                      </p>
+                      <div className="flex items-baseline gap-2">
+                        <p className="font-serif text-3xl text-stone-50">
+                          {selectedWord.hanzi}
+                        </p>
+                        <p className="text-lg text-amber-200">
+                          {selectedWord.pinyin}
+                        </p>
+                      </div>
+                      <p className="font-medium text-stone-100">
+                        {selectedWord.meaning}
+                      </p>
+                      <p className="text-sm leading-relaxed text-stone-400">
+                        {selectedWord.explanation}
+                      </p>
+                    </div>
                     {!isCorrect && (
                       <p className="mt-3 rounded-xl bg-emerald-950/70 px-3 py-2 text-sm text-emerald-200">
                         정답: {current.answer.hanzi} ({current.answer.pinyin}) ·{' '}
@@ -327,7 +331,7 @@ function App() {
 
                   <button
                     type="button"
-                    className="min-h-12 w-full rounded-2xl bg-rose-500 px-5 py-3 font-semibold text-white transition hover:bg-rose-400"
+                    className="fixed bottom-6 left-6 right-6 z-50 min-h-14 rounded-2xl bg-rose-500 px-5 py-3 text-lg font-bold text-white shadow-2xl shadow-rose-900/40 transition hover:bg-rose-400 active:scale-95 sm:relative sm:bottom-0 sm:left-0 sm:right-0 sm:mt-4 sm:min-h-12 sm:text-base"
                     onClick={goNext}
                   >
                     {index + 1 >= questions.length ? '결과 보기' : '다음 문제'}
@@ -335,6 +339,8 @@ function App() {
                 </div>
               )}
             </section>
+            {/* 다음 버튼 공간 확보용 패딩 */}
+            {answered && <div className="h-20 sm:hidden" />}
           </main>
         )}
       </div>
